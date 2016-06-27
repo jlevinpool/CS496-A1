@@ -16,14 +16,18 @@
 # https://cloud.google.com/appengine/docs/python/quickstart#download_the_hello_world_app
 #   The Reponse class:
 # https://cloud.google.com/appengine/docs/python/tools/webapp/responseclass#Introduction
+#   Google App Engine Optimized pytz:
+# https://pypi.python.org/pypi/gaepytz
 #-----------------------------------------------------------------------
 
 import webapp2
 import datetime
+from pytz.gae import pytz
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        current_date = datetime.datetime.utcnow()
+        pacific = pytz.timezone('US/Pacific')
+        current_date = datetime.datetime.now(pacific)
         current_str = current_date.strftime("%d %b %Y %H:%M:%S PST")
         
         self.response.write("<html><body>")
