@@ -9,19 +9,28 @@
 # Date: 26 June 2016
 #
 # Program Filename: Readme.md
-# Description: main function for CS 496 Assignment 1. Adapted from 
-#			   the python quickstart guide: 
+# Description: main function for CS 496 Assignment 1. 
+
+# Adapted from:
+#   Python quickstart guide: 
 # https://cloud.google.com/appengine/docs/python/quickstart#download_the_hello_world_app
+#   The Reponse class:
+# https://cloud.google.com/appengine/docs/python/tools/webapp/responseclass#Introduction
 #-----------------------------------------------------------------------
 
 import webapp2
-
+import datetime
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
-        self.response.headers['Content-Type'] = 'text/plain'
-        self.response.write('Hello, World!')
-
+        current_date = datetime.datetime.utcnow()
+        current_str = current_date.strftime("%d %b %Y %H:%M:%S PST")
+        
+        self.response.write("<html><body>")
+        self.response.write("<strong>CS 496 - Assignment 1</strong>")
+        self.response.write("<p>The time is: " + current_str + "</p>")
+        self.response.write("</body></html>")
+		
 app = webapp2.WSGIApplication([
     ('/', MainPage),
 ], debug=True)

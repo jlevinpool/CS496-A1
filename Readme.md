@@ -15,3 +15,6 @@
 Program Requirements:
 	- Live Access to web based URI
 	- Page must display some dynamic data
+	
+Starting local server:
+	dev_appserver.py .
